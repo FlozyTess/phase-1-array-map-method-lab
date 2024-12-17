@@ -12,5 +12,18 @@ const tutorials = [
 ];
 
 const titleCased = () => {
-  return tutorials
+  return tutorials.map(tutorial => {
+    return tutorial
+      .split(" ") // Split the title into words
+      .map(word => {
+        // Check if word is fully uppercase (e.g., acronyms like JSONP, NaN)
+        if (word === word.toUpperCase()) {
+          return word; // Keep acronyms as-is
+        }
+        // Capitalize first letter and keep the rest of the word as-is
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(" "); // Join the words back into a single title
+  });
 }
+console.log(titleCased());
